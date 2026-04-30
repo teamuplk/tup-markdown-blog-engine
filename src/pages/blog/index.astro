@@ -8,13 +8,13 @@ const posts = await getPublishedPosts();
 const searchPosts = posts.map(toSearchItem);
 ---
 
-<BaseLayout title={`Blog | ${siteConfig.title}`} description="Browse every post and search the archive.">
+<BaseLayout title={`Blog | ${siteConfig.title}`} description="Browse every TeamUp post and search the archive.">
   <section class="space-y-6">
     <div class="max-w-3xl space-y-4">
       <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Blog</p>
-      <h1 class="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">Searchable Markdown posts</h1>
+      <h1 class="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">TeamUp archive</h1>
       <p class="text-lg leading-8 text-slate-600">
-        This archive is powered by Markdown files in the repository. Search by title, category, tag, or description without needing a backend.
+        Search posts by title, category, or description without needing a backend.
       </p>
     </div>
 

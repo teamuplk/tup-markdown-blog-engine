@@ -23,14 +23,16 @@ const { post } = Astro.props as { post: CollectionEntry<'blog'> };
 
   <p class="mt-3 text-sm leading-6 text-[var(--brand-muted)]">{post.data.description}</p>
 
-  <div class="mt-5 flex flex-wrap gap-2">
-    {post.data.tags.map((tag) => (
-      <a
-        href={`/tags/${slugify(tag)}/`}
-        class="rounded-full border border-[var(--brand-border)] px-3 py-1 text-xs font-medium text-[var(--brand-muted)] transition hover:border-[var(--brand-soft)] hover:bg-[var(--brand-soft)] hover:text-[var(--brand)]"
-      >
-        {tag}
-      </a>
-    ))}
-  </div>
+  {post.data.tags.length > 0 && (
+    <div class="mt-5 flex flex-wrap gap-2">
+      {post.data.tags.map((tag) => (
+        <a
+          href={`/tags/${slugify(tag)}/`}
+          class="rounded-full border border-[var(--brand-border)] px-3 py-1 text-xs font-medium text-[var(--brand-muted)] transition hover:border-[var(--brand-soft)] hover:bg-[var(--brand-soft)] hover:text-[var(--brand)]"
+        >
+          {tag}
+        </a>
+      ))}
+    </div>
+  )}
 </article>

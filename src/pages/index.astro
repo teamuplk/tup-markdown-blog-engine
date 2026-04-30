@@ -14,15 +14,15 @@ const tags = collectTaxonomyItems(posts, (post) => post.data.tags).slice(0, 6);
   <section class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
     <div class="space-y-6">
       <p class="inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
-        Markdown-first blog on Cloudflare Pages
+        TeamUp blog and updates
       </p>
 
       <h1 class="max-w-3xl text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
-        Simple content, fast pages, and easy category management.
+        Changing the way people work.
       </h1>
 
       <p class="max-w-2xl text-lg leading-8 text-slate-600">
-        Posts live in Git as Markdown files, while Astro, Vue, and Tailwind turn them into a polished blog with categories, tags, search, RSS, and SEO-friendly pages.
+        Stories from the TeamUp team about product thinking, remote work, design, engineering, and company updates.
       </p>
 
       <div class="flex flex-wrap gap-3">
@@ -101,26 +101,28 @@ const tags = collectTaxonomyItems(posts, (post) => post.data.tags).slice(0, 6);
     </div>
   </section>
 
-  <section class="mt-16 rounded-3xl border border-slate-200/80 bg-white/90 p-6 shadow-sm">
-    <div class="flex flex-wrap items-end justify-between gap-4">
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Tags</p>
-        <h2 class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">Browse by topic</h2>
-      </div>
-      <a href="/tags/" class="text-sm font-semibold text-blue-700 transition hover:text-blue-800">
-        All tags
-      </a>
-    </div>
-
-    <div class="mt-6 flex flex-wrap gap-3">
-      {tags.map((tag) => (
-        <a
-          href={`/tags/${tag.slug}/`}
-          class="rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-950 hover:text-white"
-        >
-          {tag.label}
+  {tags.length > 0 && (
+    <section class="mt-16 rounded-3xl border border-slate-200/80 bg-white/90 p-6 shadow-sm">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Tags</p>
+          <h2 class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">Browse by topic</h2>
+        </div>
+        <a href="/tags/" class="text-sm font-semibold text-blue-700 transition hover:text-blue-800">
+          All tags
         </a>
-      ))}
-    </div>
-  </section>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        {tags.map((tag) => (
+          <a
+            href={`/tags/${tag.slug}/`}
+            class="rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-950 hover:text-white"
+          >
+            {tag.label}
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 </BaseLayout>

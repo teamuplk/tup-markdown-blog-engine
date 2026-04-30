@@ -1,12 +1,12 @@
 export const siteConfig = {
-  title: 'Tup Markdown Blog',
-  description:
-    'A markdown-first blog with categories, tags, search, and a Cloudflare Pages-friendly build.',
-  url: process.env.SITE_URL ?? 'https://example.com',
+  title: 'TeamUp Blog',
+  description: 'TeamUp updates, announcements, and articles about technology, remote work, and design.',
+  url: process.env.SITE_URL ?? 'https://blog.teamup.lk',
   branding: {
     primary: '#2563eb',
     primarySoft: '#dbeafe',
     primaryForeground: '#ffffff',
+    background: '#f8fafc',
     surface: '#ffffff',
     surfaceAlt: '#eef2ff',
     foreground: '#0f172a',
@@ -23,6 +23,5 @@ export const siteConfig = {
     { href: '/', label: 'Home' },
     { href: '/blog/', label: 'Blog' },
     { href: '/categories/', label: 'Categories' },
-    { href: '/tags/', label: 'Tags' },
   ],
 };

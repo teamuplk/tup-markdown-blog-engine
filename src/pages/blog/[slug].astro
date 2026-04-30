@@ -42,16 +42,18 @@ const description = post.data.seoDescription ?? post.data.description;
     <h1 class="mt-5 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">{post.data.title}</h1>
     <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600">{post.data.description}</p>
 
-    <div class="mt-6 flex flex-wrap gap-2">
-      {post.data.tags.map((tag) => (
-        <a
-          href={`/tags/${slugify(tag)}/`}
-          class="rounded-full border border-slate-200 px-3 py-1 text-sm font-medium text-slate-600 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
-        >
-          {tag}
-        </a>
-      ))}
-    </div>
+    {post.data.tags.length > 0 && (
+      <div class="mt-6 flex flex-wrap gap-2">
+        {post.data.tags.map((tag) => (
+          <a
+            href={`/tags/${slugify(tag)}/`}
+            class="rounded-full border border-slate-200 px-3 py-1 text-sm font-medium text-slate-600 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+    )}
 
     <div class="mt-10 space-y-6 text-lg leading-8 text-slate-700 [&_a]:font-semibold [&_a]:text-blue-700 [&_a:hover]:underline [&_h2]:mt-10 [&_h2]:text-3xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-slate-950 [&_h3]:mt-8 [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:tracking-tight [&_h3]:text-slate-950 [&_p]:text-slate-700 [&_ul]:space-y-2 [&_ul]:pl-6 [&_ul]:text-slate-700 [&_ul]:list-disc [&_ol]:space-y-2 [&_ol]:pl-6 [&_ol]:text-slate-700 [&_ol]:list-decimal [&_blockquote]:border-l-4 [&_blockquote]:border-blue-200 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-slate-600 [&_code]:rounded [&_code]:bg-slate-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_pre]:overflow-x-auto [&_pre]:rounded-2xl [&_pre]:bg-slate-950 [&_pre]:p-5 [&_pre]:text-sm [&_pre]:text-slate-100">
       <Content />

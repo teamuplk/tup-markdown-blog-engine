@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../data/site';
+
+const title = "Sample Page";
+const description = "This is an example page. It&#8217;s different from a blog post because it will stay in one place and will show up in your site navigation (in most [&hellip;]";
+const content = "<p>This is an example page. It&#8217;s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:</p>\n\n\n\n<blockquote class=\"wp-block-quote is-layout-flow wp-block-quote-is-layout-flow\"><p>Hi there! I&#8217;m a bike messenger by day, aspiring actor by night, and this is my website. I live in Los Angeles, have a great dog named Jack, and I like pi&#241;a coladas. (And gettin&#8217; caught in the rain.)</p></blockquote>\n\n\n\n<p>&#8230;or something like this:</p>\n\n\n\n<blockquote class=\"wp-block-quote is-layout-flow wp-block-quote-is-layout-flow\"><p>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</p></blockquote>\n\n\n\n<p>As a new WordPress user, you should go to <a href=\"/\">your dashboard</a> to delete this page and create new pages for your content. Have fun!</p>";
+const canonical = new URL('/sample-page/', siteConfig.url).toString();
+---
+
+<BaseLayout title={`${title} | ${siteConfig.title}`} description={description} canonical={canonical} ogType="article">
+  <article class="rounded-3xl border border-slate-200/80 bg-white/90 p-6 shadow-sm sm:p-8 lg:p-10">
+    <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Page</p>
+    <h1 class="mt-4 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">{title}</h1>
+    <div class="mt-8 space-y-6 text-lg leading-8 text-slate-700 [&_a]:font-semibold [&_a]:text-blue-700 [&_a:hover]:underline [&_h2]:mt-10 [&_h2]:text-3xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-slate-950 [&_h3]:mt-8 [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:tracking-tight [&_h3]:text-slate-950 [&_p]:text-slate-700 [&_ul]:space-y-2 [&_ul]:pl-6 [&_ul]:text-slate-700 [&_ul]:list-disc [&_ol]:space-y-2 [&_ol]:pl-6 [&_ol]:text-slate-700 [&_ol]:list-decimal [&_blockquote]:border-l-4 [&_blockquote]:border-blue-200 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-slate-600 [&_code]:rounded [&_code]:bg-slate-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_pre]:overflow-x-auto [&_pre]:rounded-2xl [&_pre]:bg-slate-950 [&_pre]:p-5 [&_pre]:text-sm [&_pre]:text-slate-100">
+      <div set:html={content} />
+    </div>
+  </article>
+</BaseLayout>
