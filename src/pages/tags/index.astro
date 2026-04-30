@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { collectTaxonomyItems, getPublishedPosts } from '../../lib/blog';
+import { siteConfig } from '../../data/site';
+
+const posts = await getPublishedPosts();
+const tags = collectTaxonomyItems(posts, (post) => post.data.tags);
+---
+
+<BaseLayout title={`Tags | ${siteConfig.title}`} description="Browse all tags from the blog archive.">
+  <section class="space-y-6">
+    <div class="max-w-3xl space-y-4">
+      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Tags</p>
+      <h1 class="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">Browse the content by tag</h1>
+      <p class="text-lg leading-8 text-slate-600">
+        Tags make it easy to follow topics across categories and spot related posts quickly.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap gap-3">
+      {tags.map((tag) => (
+        <a
+          href={`/tags/${tag.slug}/`}
+          class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+        >
+          {tag.label}
+          <span class="ml-2 text-slate-400">{tag.count}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../lib/blog';
+import { slugify } from '../lib/slug';
+
+const { post } = Astro.props as { post: CollectionEntry<'blog'> };
+---
+
+<article class="group flex h-full flex-col rounded-3xl border border-[var(--brand-border)]/80 bg-[var(--brand-surface)] p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-xl">
+  <div class="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--brand-muted)]">
+    <a
+      href={`/categories/${slugify(post.data.category)}/`}
+      class="rounded-full bg-[var(--brand-soft)] px-3 py-1 text-[var(--brand)] transition group-hover:bg-[var(--brand-soft)]"
+    >
+      {post.data.category}
+    </a>
+    <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+  </div>
+
+  <h3 class="mt-4 text-2xl font-semibold leading-tight text-[var(--brand-foreground-color)] transition group-hover:text-[var(--brand)]">
+    <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+  </h3>
+
+  <p class="mt-3 text-sm leading-6 text-[var(--brand-muted)]">{post.data.description}</p>
+
+  <div class="mt-5 flex flex-wrap gap-2">
+    {post.data.tags.map((tag) => (
+      <a
+        href={`/tags/${slugify(tag)}/`}
+        class="rounded-full border border-[var(--brand-border)] px-3 py-1 text-xs font-medium text-[var(--brand-muted)] transition hover:border-[var(--brand-soft)] hover:bg-[var(--brand-soft)] hover:text-[var(--brand)]"
+      >
+        {tag}
+      </a>
+    ))}
+  </div>
+</article>

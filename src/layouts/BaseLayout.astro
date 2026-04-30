@@ -1,0 +1,48 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { siteConfig } from '../data/site';
+import '../styles/global.css';
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  canonical = new URL(Astro.url.pathname, Astro.site ?? siteConfig.url).toString(),
+  noIndex = false,
+  ogType = 'website',
+} = Astro.props as {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  noIndex?: boolean;
+  ogType?: 'website' | 'article';
+};
+
+const brandStyles = `--brand: ${siteConfig.branding.primary}; --brand-soft: ${siteConfig.branding.primarySoft}; --brand-foreground: ${siteConfig.branding.primaryForeground}; --brand-background: ${siteConfig.branding.background}; --brand-surface: ${siteConfig.branding.surface}; --brand-surface-alt: ${siteConfig.branding.surfaceAlt}; --brand-foreground-color: ${siteConfig.branding.foreground}; --brand-muted: ${siteConfig.branding.muted}; --brand-border: ${siteConfig.branding.border}; --brand-accent: ${siteConfig.branding.accent}; --brand-link: ${siteConfig.branding.link}; --brand-link-hover: ${siteConfig.branding.linkHover}; --brand-selection: ${siteConfig.branding.selection}; --brand-hero-from: ${siteConfig.branding.heroFrom}; --brand-hero-to: ${siteConfig.branding.heroTo};`;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth text-slate-950" style={brandStyles}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={canonical} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:site_name" content={siteConfig.title} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={ogType} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+  </head>
+  <body class="min-h-screen font-sans text-slate-950 antialiased">
+    <SiteHeader currentPath={Astro.url.pathname} />
+    <main class="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

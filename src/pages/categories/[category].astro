@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPublishedPosts } from '../../lib/blog';
+import { slugify, titleFromSlug } from '../../lib/slug';
+import { siteConfig } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  const categories = new Map<string, string>();
+
+  for (const post of posts) {
+    categories.set(slugify(post.data.category), post.data.category);
+  }
+
+  return [...categories.entries()].map(([categorySlug, category]) => ({
+    params: { category: categorySlug },
+    props: { category },
+  }));
+}
+
+const posts = await getPublishedPosts();
+const { category } = Astro.props as { category: string };
+const categorySlug = Astro.params.category ?? slugify(category);
+const categoryPosts = posts.filter((post) => slugify(post.data.category) === categorySlug);
+const categoryLabel = category || titleFromSlug(categorySlug);
+---
+
+<BaseLayout title={`${categoryLabel} | ${siteConfig.title}`} description={`Posts in the ${categoryLabel} category.`}>
+  <section class="space-y-6">
+    <div class="max-w-3xl space-y-4">
+      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Category</p>
+      <h1 class="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">{categoryLabel}</h1>
+      <p class="text-lg leading-8 text-slate-600">
+        All posts grouped under this category.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {categoryPosts.map((post) => <PostCard post={post} />)}
+    </div>
+
+    {categoryPosts.length === 0 && (
+      <div class="rounded-3xl border border-dashed border-slate-300 bg-white/70 p-8 text-slate-600">
+        No posts were found for this category.
+      </div>
+    )}
+  </section>
+</BaseLayout>

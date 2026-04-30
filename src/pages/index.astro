@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { collectTaxonomyItems, getPublishedPosts } from '../lib/blog';
+import { siteConfig } from '../data/site';
+
+const posts = await getPublishedPosts();
+const latestPosts = posts.slice(0, 3);
+const categories = collectTaxonomyItems(posts, (post) => [post.data.category]).slice(0, 6);
+const tags = collectTaxonomyItems(posts, (post) => post.data.tags).slice(0, 6);
+---
+
+<BaseLayout title={siteConfig.title} description={siteConfig.description}>
+  <section class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+    <div class="space-y-6">
+      <p class="inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
+        Markdown-first blog on Cloudflare Pages
+      </p>
+
+      <h1 class="max-w-3xl text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
+        Simple content, fast pages, and easy category management.
+      </h1>
+
+      <p class="max-w-2xl text-lg leading-8 text-slate-600">
+        Posts live in Git as Markdown files, while Astro, Vue, and Tailwind turn them into a polished blog with categories, tags, search, RSS, and SEO-friendly pages.
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="/blog/"
+          class="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+        >
+          Browse posts
+        </a>
+        <a
+          href="/categories/"
+          class="rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:text-blue-700"
+        >
+          View categories
+        </a>
+      </div>
+    </div>
+
+    <div class="grid gap-4 rounded-3xl border border-slate-200/80 bg-white/90 p-6 shadow-sm sm:grid-cols-2">
+      <div class="rounded-2xl bg-slate-950 p-5 text-white">
+        <p class="text-sm font-medium text-slate-300">Published posts</p>
+        <p class="mt-4 text-4xl font-semibold">{posts.length}</p>
+      </div>
+      <div class="rounded-2xl bg-blue-50 p-5 text-slate-950">
+        <p class="text-sm font-medium text-blue-700">Categories</p>
+        <p class="mt-4 text-4xl font-semibold">{categories.length}</p>
+      </div>
+      <div class="rounded-2xl bg-white p-5 text-slate-950 ring-1 ring-slate-200">
+        <p class="text-sm font-medium text-slate-500">Tags</p>
+        <p class="mt-4 text-4xl font-semibold">{tags.length}</p>
+      </div>
+      <div class="rounded-2xl bg-slate-100 p-5 text-slate-950">
+        <p class="text-sm font-medium text-slate-500">Hosting</p>
+        <p class="mt-4 text-lg font-semibold leading-7">Cloudflare Pages</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-16 space-y-6">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Categories</p>
+        <h2 class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">Keep the blog organized</h2>
+      </div>
+      <a href="/categories/" class="text-sm font-semibold text-blue-700 transition hover:text-blue-800">
+        All categories
+      </a>
+    </div>
+
+    <div class="flex flex-wrap gap-3">
+      {categories.map((category) => (
+        <a
+          href={`/categories/${category.slug}/`}
+          class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+        >
+          {category.label}
+          <span class="ml-2 text-slate-400">{category.count}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Latest posts</p>
+        <h2 class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">Fresh content</h2>
+      </div>
+      <a href="/blog/" class="text-sm font-semibold text-blue-700 transition hover:text-blue-800">
+        All posts
+      </a>
+    </div>
+
+    <div class="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {latestPosts.map((post) => <PostCard post={post} />)}
+    </div>
+  </section>
+
+  <section class="mt-16 rounded-3xl border border-slate-200/80 bg-white/90 p-6 shadow-sm">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Tags</p>
+        <h2 class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">Browse by topic</h2>
+      </div>
+      <a href="/tags/" class="text-sm font-semibold text-blue-700 transition hover:text-blue-800">
+        All tags
+      </a>
+    </div>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      {tags.map((tag) => (
+        <a
+          href={`/tags/${tag.slug}/`}
+          class="rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-950 hover:text-white"
+        >
+          {tag.label}
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

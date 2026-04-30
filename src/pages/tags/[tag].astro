@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPublishedPosts } from '../../lib/blog';
+import { slugify, titleFromSlug } from '../../lib/slug';
+import { siteConfig } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  const tags = new Map<string, string>();
+
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      tags.set(slugify(tag), tag);
+    }
+  }
+
+  return [...tags.entries()].map(([tagSlug, tag]) => ({
+    params: { tag: tagSlug },
+    props: { tag },
+  }));
+}
+
+const posts = await getPublishedPosts();
+const { tag } = Astro.props as { tag: string };
+const tagSlug = Astro.params.tag ?? slugify(tag);
+const tagPosts = posts.filter((post) => post.data.tags.some((value) => slugify(value) === tagSlug));
+const tagLabel = tag || titleFromSlug(tagSlug);
+---
+
+<BaseLayout title={`${tagLabel} | ${siteConfig.title}`} description={`Posts tagged with ${tagLabel}.`}>
+  <section class="space-y-6">
+    <div class="max-w-3xl space-y-4">
+      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Tag</p>
+      <h1 class="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">{tagLabel}</h1>
+      <p class="text-lg leading-8 text-slate-600">
+        Posts linked by the same topic tag.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {tagPosts.map((post) => <PostCard post={post} />)}
+    </div>
+
+    {tagPosts.length === 0 && (
+      <div class="rounded-3xl border border-dashed border-slate-300 bg-white/70 p-8 text-slate-600">
+        No posts were found for this tag.
+      </div>
+    )}
+  </section>
+</BaseLayout>
