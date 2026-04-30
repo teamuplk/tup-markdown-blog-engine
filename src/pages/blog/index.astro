@@ -8,14 +8,12 @@ const posts = await getPublishedPosts();
 const searchPosts = posts.map(toSearchItem);
 ---
 
-<BaseLayout title={`Blog | ${siteConfig.title}`} description="Browse every TeamUp post and search the archive.">
+<BaseLayout title={`Blog | ${siteConfig.title}`} description={siteConfig.blogIndex.metaDescription}>
   <section class="space-y-6">
     <div class="max-w-3xl space-y-4">
-      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Blog</p>
-      <h1 class="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">TeamUp archive</h1>
-      <p class="text-lg leading-8 text-slate-600">
-        Search posts by title, category, or description without needing a backend.
-      </p>
+      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--brand)]">{siteConfig.blogIndex.eyebrow}</p>
+      <h1 class="text-4xl font-semibold tracking-tight text-[var(--brand-accent)] sm:text-5xl">{siteConfig.blogIndex.title}</h1>
+      <p class="text-lg leading-8 text-[var(--brand-muted)]">{siteConfig.blogIndex.description}</p>
     </div>
 
     <SearchPosts client:load posts={searchPosts} />

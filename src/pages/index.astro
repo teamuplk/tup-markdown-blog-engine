@@ -13,50 +13,46 @@ const tags = collectTaxonomyItems(posts, (post) => post.data.tags).slice(0, 6);
 <BaseLayout title={siteConfig.title} description={siteConfig.description}>
   <section class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
     <div class="space-y-6">
-      <p class="inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
-        TeamUp blog and updates
+      <p class="inline-flex rounded-full border border-[var(--brand-border)] bg-[var(--brand-soft)] px-4 py-2 text-sm font-semibold text-[var(--brand)]">
+        {siteConfig.home.badge}
       </p>
 
-      <h1 class="max-w-3xl text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
-        Changing the way people work.
-      </h1>
+      <h1 class="max-w-3xl text-5xl font-semibold tracking-tight text-[var(--brand-accent)] sm:text-6xl">{siteConfig.home.title}</h1>
 
-      <p class="max-w-2xl text-lg leading-8 text-slate-600">
-        Stories from the TeamUp team about product thinking, remote work, design, engineering, and company updates.
-      </p>
+      <p class="max-w-2xl text-lg leading-8 text-[var(--brand-muted)]">{siteConfig.home.description}</p>
 
       <div class="flex flex-wrap gap-3">
         <a
-          href="/blog/"
-          class="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+          href={siteConfig.home.primaryCta.href}
+          class="rounded-full bg-[var(--brand-accent)] px-5 py-3 text-sm font-semibold text-[var(--brand-foreground)] transition hover:opacity-90"
         >
-          Browse posts
+          {siteConfig.home.primaryCta.label}
         </a>
         <a
-          href="/categories/"
-          class="rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:text-blue-700"
+          href={siteConfig.home.secondaryCta.href}
+          class="rounded-full border border-[var(--brand-border)] bg-[var(--brand-surface)] px-5 py-3 text-sm font-semibold text-[var(--brand-foreground-color)] transition hover:border-[var(--brand)] hover:text-[var(--brand)]"
         >
-          View categories
+          {siteConfig.home.secondaryCta.label}
         </a>
       </div>
     </div>
 
-    <div class="grid gap-4 rounded-3xl border border-slate-200/80 bg-white/90 p-6 shadow-sm sm:grid-cols-2">
-      <div class="rounded-2xl bg-slate-950 p-5 text-white">
-        <p class="text-sm font-medium text-slate-300">Published posts</p>
+    <div class="grid gap-4 rounded-3xl border border-[var(--brand-border)]/80 bg-[var(--brand-surface)]/90 p-6 shadow-sm sm:grid-cols-2">
+      <div class="rounded-2xl bg-[var(--brand-accent)] p-5 text-[var(--brand-foreground)]">
+        <p class="text-sm font-medium text-[var(--brand-foreground)]/75">{siteConfig.home.stats.postsLabel}</p>
         <p class="mt-4 text-4xl font-semibold">{posts.length}</p>
       </div>
-      <div class="rounded-2xl bg-blue-50 p-5 text-slate-950">
-        <p class="text-sm font-medium text-blue-700">Categories</p>
+      <div class="rounded-2xl bg-[var(--brand-soft)] p-5 text-[var(--brand-accent)]">
+        <p class="text-sm font-medium text-[var(--brand)]">{siteConfig.home.stats.categoriesLabel}</p>
         <p class="mt-4 text-4xl font-semibold">{categories.length}</p>
       </div>
-      <div class="rounded-2xl bg-white p-5 text-slate-950 ring-1 ring-slate-200">
-        <p class="text-sm font-medium text-slate-500">Tags</p>
+      <div class="rounded-2xl bg-[var(--brand-surface)] p-5 text-[var(--brand-accent)] ring-1 ring-[var(--brand-border)]">
+        <p class="text-sm font-medium text-[var(--brand-muted)]">{siteConfig.home.stats.tagsLabel}</p>
         <p class="mt-4 text-4xl font-semibold">{tags.length}</p>
       </div>
-      <div class="rounded-2xl bg-slate-100 p-5 text-slate-950">
-        <p class="text-sm font-medium text-slate-500">Hosting</p>
-        <p class="mt-4 text-lg font-semibold leading-7">Cloudflare Pages</p>
+      <div class="rounded-2xl bg-[var(--brand-background)] p-5 text-[var(--brand-accent)]">
+        <p class="text-sm font-medium text-[var(--brand-muted)]">{siteConfig.home.stats.hostingLabel}</p>
+        <p class="mt-4 text-lg font-semibold leading-7">{siteConfig.home.stats.hostingValue}</p>
       </div>
     </div>
   </section>
@@ -64,11 +60,11 @@ const tags = collectTaxonomyItems(posts, (post) => post.data.tags).slice(0, 6);
   <section class="mt-16 space-y-6">
     <div class="flex flex-wrap items-end justify-between gap-4">
       <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Categories</p>
-        <h2 class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">Keep the blog organized</h2>
+        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--brand)]">{siteConfig.home.categoriesSection.eyebrow}</p>
+        <h2 class="mt-2 text-3xl font-semibold tracking-tight text-[var(--brand-accent)]">{siteConfig.home.categoriesSection.title}</h2>
       </div>
-      <a href="/categories/" class="text-sm font-semibold text-blue-700 transition hover:text-blue-800">
-        All categories
+      <a href="/categories/" class="text-sm font-semibold text-[var(--brand)] transition hover:opacity-80">
+        {siteConfig.home.categoriesSection.ctaLabel}
       </a>
     </div>
 
@@ -76,10 +72,10 @@ const tags = collectTaxonomyItems(posts, (post) => post.data.tags).slice(0, 6);
       {categories.map((category) => (
         <a
           href={`/categories/${category.slug}/`}
-          class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+          class="rounded-full border border-[var(--brand-border)] bg-[var(--brand-surface)] px-4 py-2 text-sm font-medium text-[var(--brand-foreground-color)] transition hover:border-[var(--brand)] hover:bg-[var(--brand-soft)] hover:text-[var(--brand)]"
         >
           {category.label}
-          <span class="ml-2 text-slate-400">{category.count}</span>
+          <span class="ml-2 text-[var(--brand-muted)]">{category.count}</span>
         </a>
       ))}
     </div>
@@ -88,11 +84,11 @@ const tags = collectTaxonomyItems(posts, (post) => post.data.tags).slice(0, 6);
   <section class="mt-16">
     <div class="flex flex-wrap items-end justify-between gap-4">
       <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Latest posts</p>
-        <h2 class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">Fresh content</h2>
+        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--brand)]">{siteConfig.home.latestSection.eyebrow}</p>
+        <h2 class="mt-2 text-3xl font-semibold tracking-tight text-[var(--brand-accent)]">{siteConfig.home.latestSection.title}</h2>
       </div>
-      <a href="/blog/" class="text-sm font-semibold text-blue-700 transition hover:text-blue-800">
-        All posts
+      <a href="/blog/" class="text-sm font-semibold text-[var(--brand)] transition hover:opacity-80">
+        {siteConfig.home.latestSection.ctaLabel}
       </a>
     </div>
 
@@ -102,14 +98,14 @@ const tags = collectTaxonomyItems(posts, (post) => post.data.tags).slice(0, 6);
   </section>
 
   {tags.length > 0 && (
-    <section class="mt-16 rounded-3xl border border-slate-200/80 bg-white/90 p-6 shadow-sm">
+    <section class="mt-16 rounded-3xl border border-[var(--brand-border)]/80 bg-[var(--brand-surface)]/90 p-6 shadow-sm">
       <div class="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Tags</p>
-          <h2 class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">Browse by topic</h2>
+          <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--brand)]">{siteConfig.home.tagsSection.eyebrow}</p>
+          <h2 class="mt-2 text-3xl font-semibold tracking-tight text-[var(--brand-accent)]">{siteConfig.home.tagsSection.title}</h2>
         </div>
-        <a href="/tags/" class="text-sm font-semibold text-blue-700 transition hover:text-blue-800">
-          All tags
+        <a href="/tags/" class="text-sm font-semibold text-[var(--brand)] transition hover:opacity-80">
+          {siteConfig.home.tagsSection.ctaLabel}
         </a>
       </div>
 
@@ -117,7 +113,7 @@ const tags = collectTaxonomyItems(posts, (post) => post.data.tags).slice(0, 6);
         {tags.map((tag) => (
           <a
             href={`/tags/${tag.slug}/`}
-            class="rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-950 hover:text-white"
+            class="rounded-full bg-[var(--brand-background)] px-4 py-2 text-sm font-medium text-[var(--brand-foreground-color)] transition hover:bg-[var(--brand-accent)] hover:text-[var(--brand-foreground)]"
           >
             {tag.label}
           </a>

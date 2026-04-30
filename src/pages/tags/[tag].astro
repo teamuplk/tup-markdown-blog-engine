@@ -31,11 +31,9 @@ const tagLabel = tag || titleFromSlug(tagSlug);
 <BaseLayout title={`${tagLabel} | ${siteConfig.title}`} description={`Posts tagged with ${tagLabel}.`}>
   <section class="space-y-6">
     <div class="max-w-3xl space-y-4">
-      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Tag</p>
-      <h1 class="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">{tagLabel}</h1>
-      <p class="text-lg leading-8 text-slate-600">
-        Posts linked by the same topic tag.
-      </p>
+      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--brand)]">{siteConfig.tagsPage.detailEyebrow}</p>
+      <h1 class="text-4xl font-semibold tracking-tight text-[var(--brand-accent)] sm:text-5xl">{tagLabel}</h1>
+      <p class="text-lg leading-8 text-[var(--brand-muted)]">{siteConfig.tagsPage.detailDescription}</p>
     </div>
 
     <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -43,8 +41,8 @@ const tagLabel = tag || titleFromSlug(tagSlug);
     </div>
 
     {tagPosts.length === 0 && (
-      <div class="rounded-3xl border border-dashed border-slate-300 bg-white/70 p-8 text-slate-600">
-        No posts were found for this tag.
+      <div class="rounded-3xl border border-dashed border-[var(--brand-border)] bg-[var(--brand-surface)]/70 p-8 text-[var(--brand-muted)]">
+        {siteConfig.tagsPage.emptyMessage}
       </div>
     )}
   </section>

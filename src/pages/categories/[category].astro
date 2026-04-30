@@ -29,11 +29,9 @@ const categoryLabel = category || titleFromSlug(categorySlug);
 <BaseLayout title={`${categoryLabel} | ${siteConfig.title}`} description={`Posts in the ${categoryLabel} category.`}>
   <section class="space-y-6">
     <div class="max-w-3xl space-y-4">
-      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Category</p>
-      <h1 class="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">{categoryLabel}</h1>
-      <p class="text-lg leading-8 text-slate-600">
-        All posts grouped under this category.
-      </p>
+      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--brand)]">{siteConfig.categoriesPage.detailEyebrow}</p>
+      <h1 class="text-4xl font-semibold tracking-tight text-[var(--brand-accent)] sm:text-5xl">{categoryLabel}</h1>
+      <p class="text-lg leading-8 text-[var(--brand-muted)]">{siteConfig.categoriesPage.detailDescription}</p>
     </div>
 
     <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -41,8 +39,8 @@ const categoryLabel = category || titleFromSlug(categorySlug);
     </div>
 
     {categoryPosts.length === 0 && (
-      <div class="rounded-3xl border border-dashed border-slate-300 bg-white/70 p-8 text-slate-600">
-        No posts were found for this category.
+      <div class="rounded-3xl border border-dashed border-[var(--brand-border)] bg-[var(--brand-surface)]/70 p-8 text-[var(--brand-muted)]">
+        {siteConfig.categoriesPage.emptyMessage}
       </div>
     )}
   </section>

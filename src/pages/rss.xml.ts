@@ -1,5 +1,5 @@
 import rss from '@astrojs/rss';
-import { getPublishedPosts } from '../lib/blog';
+import { getPostSlug, getPublishedPosts } from '../lib/blog';
 import { siteConfig } from '../data/site';
 
 export async function GET() {
@@ -13,7 +13,7 @@ export async function GET() {
       title: post.data.title,
       description: post.data.seoDescription ?? post.data.description,
       pubDate: post.data.pubDate,
-      link: `/blog/${post.slug}/`,
+      link: `/blog/${getPostSlug(post)}/`,
     })),
   });
 }

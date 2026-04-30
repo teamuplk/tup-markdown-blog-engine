@@ -4,10 +4,11 @@
   "type": "module",
   "version": "0.0.0",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "check": "astro check"
+    "prepare:assets": "node scripts/prepare-public-assets.mjs",
+    "dev": "npm run prepare:assets && astro dev",
+    "build": "npm run prepare:assets && astro check && astro build",
+    "preview": "npm run prepare:assets && astro preview",
+    "check": "npm run prepare:assets && astro check"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",

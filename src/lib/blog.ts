@@ -3,6 +3,10 @@ import { slugify } from './slug';
 
 export type BlogPost = CollectionEntry<'blog'>;
 
+export function getPostSlug(post: BlogPost) {
+  return post.id;
+}
+
 export function formatDate(date: Date) {
   return new Intl.DateTimeFormat('en', {
     dateStyle: 'medium',
@@ -45,7 +49,7 @@ export function getRelatedPosts(currentPost: BlogPost, posts: BlogPost[]) {
 
   return posts
     .filter((post) => {
-      if (post.slug === currentPost.slug) {
+      if (post.id === currentPost.id) {
         return false;
       }
 
@@ -59,7 +63,7 @@ export function getRelatedPosts(currentPost: BlogPost, posts: BlogPost[]) {
 
 export function toSearchItem(post: BlogPost) {
   return {
-    slug: post.slug,
+    slug: getPostSlug(post),
     title: post.data.title,
     description: post.data.description,
     category: post.data.category,

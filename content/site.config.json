@@ -1,0 +1,86 @@
+{
+  "title": "TeamUp Blog",
+  "description": "TeamUp updates, announcements, and articles about technology, remote work, and design.",
+  "url": "https://blog.teamup.lk",
+  "brandMark": "TU",
+  "branding": {
+    "primary": "#2563eb",
+    "primarySoft": "#dbeafe",
+    "primaryForeground": "#ffffff",
+    "background": "#f8fafc",
+    "surface": "#ffffff",
+    "surfaceAlt": "#eef2ff",
+    "foreground": "#0f172a",
+    "muted": "#64748b",
+    "border": "#e2e8f0",
+    "accent": "#0f172a",
+    "link": "#2563eb",
+    "linkHover": "#1d4ed8",
+    "selection": "#00ef90",
+    "heroFrom": "#08d23e",
+    "heroTo": "#00ef90"
+  },
+  "nav": [
+    { "href": "/", "label": "Home" },
+    { "href": "/blog/", "label": "Blog" },
+    { "href": "/categories/", "label": "Categories" }
+  ],
+  "home": {
+    "badge": "TeamUp blog and updates",
+    "title": "Changing the way people work.",
+    "description": "Stories from the TeamUp team about product thinking, remote work, design, engineering, and company updates.",
+    "primaryCta": { "href": "/blog/", "label": "Browse posts" },
+    "secondaryCta": { "href": "/categories/", "label": "View categories" },
+    "stats": {
+      "postsLabel": "Published posts",
+      "categoriesLabel": "Categories",
+      "tagsLabel": "Tags",
+      "hostingLabel": "Hosting",
+      "hostingValue": "Cloudflare Pages"
+    },
+    "categoriesSection": {
+      "eyebrow": "Categories",
+      "title": "Keep the blog organized",
+      "ctaLabel": "All categories"
+    },
+    "latestSection": {
+      "eyebrow": "Latest posts",
+      "title": "Fresh content",
+      "ctaLabel": "All posts"
+    },
+    "tagsSection": {
+      "eyebrow": "Tags",
+      "title": "Browse by topic",
+      "ctaLabel": "All tags"
+    }
+  },
+  "blogIndex": {
+    "metaDescription": "Browse every TeamUp post and search the archive.",
+    "eyebrow": "Blog",
+    "title": "TeamUp archive",
+    "description": "Search posts by title, category, or description without needing a backend."
+  },
+  "categoriesPage": {
+    "metaDescription": "Browse all categories from the TeamUp archive.",
+    "eyebrow": "Categories",
+    "title": "Browse the content by category",
+    "description": "Categories make the archive easy to scan and keep related posts grouped together.",
+    "cardLabel": "Category",
+    "detailEyebrow": "Category",
+    "detailDescription": "All posts grouped under this category.",
+    "emptyMessage": "No posts were found for this category."
+  },
+  "tagsPage": {
+    "metaDescription": "Browse all tags from the TeamUp archive.",
+    "eyebrow": "Tags",
+    "title": "Browse the content by tag",
+    "description": "Tags make it easy to follow topics across categories and spot related posts quickly.",
+    "detailEyebrow": "Tag",
+    "detailDescription": "Posts linked by the same topic tag.",
+    "emptyMessage": "No posts were found for this tag."
+  },
+  "relatedPosts": {
+    "eyebrow": "Related",
+    "title": "More posts like this"
+  }
+}

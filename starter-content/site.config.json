@@ -1,0 +1,14 @@
+{
+  "title": "Starter Blog",
+  "description": "A starter content repo for the open-source Astro markdown blog.",
+  "url": "https://example.com",
+  "brandMark": "SB",
+  "home": {
+    "badge": "Starter content and branding",
+    "title": "Keep your writing separate from the blog engine.",
+    "description": "This config lives outside the app templates, so you can pull upstream fixes without rewriting your site settings."
+  },
+  "blogIndex": {
+    "title": "Starter archive"
+  }
+}
