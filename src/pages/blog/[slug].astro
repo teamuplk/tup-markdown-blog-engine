@@ -41,7 +41,17 @@ const description = post.data.seoDescription ?? post.data.description;
     </div>
 
     <h1 class="mt-5 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">{post.data.title}</h1>
-    <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600">{post.data.description}</p>
+    <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600">
+      {post.data.description.replace(/&#(\d+);/g, (_, code) => String.fromCharCode(parseInt(code, 10)))
+        .replace(/&hellip;/g, '…')
+        .replace(/&mdash;/g, '—')
+        .replace(/&ndash;/g, '–')
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&apos;/g, "'")}
+    </p>
 
     {post.data.tags.length > 0 && (
       <div class="mt-6 flex flex-wrap gap-2">

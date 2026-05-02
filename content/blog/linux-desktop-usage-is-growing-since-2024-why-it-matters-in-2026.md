@@ -1,6 +1,6 @@
 ---
 title: "Linux Desktop Usage Is Growing Since 2024: Why It Matters in 2026"
-description: "For years, Linux on the desktop has been described as “the year of Linux”, a promise that never quite arrived. But starting in 2024, something genuinely interesting happened. [&hellip;]"
+description: "For years, Linux on the desktop has been described as “the year of Linux”, a promise that never quite arrived. But starting in 2024, something genuinely interesting happened. […]"
 pubDate: 2026-01-16
 category: "Tech Updates"
 tags: []

@@ -1,17 +1,17 @@
 ---
 title: "Progress Snapshot: Mid January 2025"
-description: "As we approach the midpoint of January, our team is buzzing with excitement about the remarkable progress we&#8217;ve made in the first two weeks of 2025. For those [&hellip;]"
+description: "As we approach the midpoint of January, our team is buzzing with excitement about the remarkable progress we've made in the first two weeks of 2025. For those …"
 pubDate: 2025-01-16
 category: "TeamUp HQ"
 tags: []
 draft: false
 ---
 
-<p>As we approach the midpoint of January, our team is buzzing with excitement about the remarkable progress we&#8217;ve made in the first two weeks of 2025. For those who haven&#8217;t yet caught our founder&#8217;s keynote with what we have planned for this year, we invite you to dive into the full details on our blog post</p>
+<p>As we approach the midpoint of January, our team is buzzing with excitement about the remarkable progress we've made in the first two weeks of 2025. For those who haven't yet caught our founder's keynote with what we have planned for this year, we invite you to dive into the full details on our blog post</p>
 
 
 
-<p><a href="/blog/founders-keynote-whats-next-for-2025/">Read the Founder’s Keynote: What’s Next for 2025</a> for the full context behind this update.</p>
+<p><a href="/blog/founders-keynote-whats-next-for-2025/">Read the Founder's Keynote: What's Next for 2025</a> for the full context behind this update.</p>
 
 
 
@@ -19,7 +19,7 @@ draft: false
 
 
 
-<p>We&#8217;ve carried forward the momentum from the end of 2024, focusing on building global core features that significantly enhance our internal product platform. Our primary objective this month is to develop a faster and more robust application framework that sets new standards within our ecosystem.</p>
+<p>We've carried forward the momentum from the end of 2024, focusing on building global core features that significantly enhance our internal product platform. Our primary objective this month is to develop a faster and more robust application framework that sets new standards within our ecosystem.</p>
 
 
 
@@ -27,7 +27,7 @@ draft: false
 
 
 
-<p><strong>Developer Experience (DX)</strong> remains at the heart of our innovation strategy. We&#8217;ve undertaken a major refactoring of our internal CRUD components, which has been yielding substantial benefits like Reduced development time, Improved code efficiency, reduce duplicate codes between applications, thus bringing a direct cost benefits for our clients.</p>
+<p><strong>Developer Experience (DX)</strong> remains at the heart of our innovation strategy. We've undertaken a major refactoring of our internal CRUD components, which has been yielding substantial benefits like Reduced development time, Improved code efficiency, reduce duplicate codes between applications, thus bringing a direct cost benefits for our clients.</p>
 
 
 
@@ -35,7 +35,7 @@ draft: false
 
 
 
-<p>We&#8217;re also thrilled to have resumed work on our client projects, with several exciting releases anticipated in the mid-quarter. Our team continues to push boundaries, ensuring we deliver cutting-edge solutions that exceed expectations.</p>
+<p>We're also thrilled to have resumed work on our client projects, with several exciting releases anticipated in the mid-quarter. Our team continues to push boundaries, ensuring we deliver cutting-edge solutions that exceed expectations.</p>
 
 
 

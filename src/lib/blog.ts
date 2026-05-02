@@ -13,12 +13,25 @@ export function formatDate(date: Date) {
   }).format(date);
 }
 
+export function decodeHtmlEntities(text: string): string {
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = text;
+  return textarea.value;
+}
+
 export async function getPublishedPosts() {
   const posts = await getCollection('blog');
 
   return posts
     .filter((post) => !post.data.draft)
     .sort((left, right) => right.data.pubDate.getTime() - left.data.pubDate.getTime());
+}
+
+export async function getFeaturedPosts(slugs: string[]): Promise<BlogPost[]> {
+  const posts = await getPublishedPosts();
+  return slugs
+    .map((slug) => posts.find((post) => post.id === slug))
+    .filter((post): post is BlogPost => post !== undefined);
 }
 
 export function collectTaxonomyItems(

@@ -1,6 +1,6 @@
 ---
 title: "2024 Year-End Holiday Update"
-description: "As we approach the end of a highly successful year, we want to thank each of you for trusting us with your projects and allowing us to deliver [&hellip;]"
+description: "As we approach the end of a highly successful year, we want to thank each of you for trusting us with your projects and allowing us to deliver […]"
 pubDate: 2024-10-31
 category: "TeamUp HQ"
 tags: []

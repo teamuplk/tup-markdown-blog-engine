@@ -1,6 +1,6 @@
 ---
 title: "2022 Year-end Holidays"
-description: "It has been an exciting year for us despite some challenges we have faced since covid, and that year is coming to an end. As some of you [&hellip;]"
+description: "It has been an exciting year for us despite some challenges we have faced since covid, and that year is coming to an end. As some of you […]"
 pubDate: 2022-12-03
 category: "TeamUp HQ"
 tags: []

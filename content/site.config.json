@@ -25,6 +25,11 @@
     { "href": "/blog/", "label": "Blog" },
     { "href": "/categories/", "label": "Categories" }
   ],
+  "featuredPosts": [
+    "progress-snapshot-mid-january-2025",
+    "linux-desktop-usage-is-growing-since-2024-why-it-matters-in-2026",
+    "2024-year-end-holiday-update"
+  ],
   "home": {
     "badge": "TeamUp blog and updates",
     "title": "Changing the way people work.",
@@ -37,6 +42,11 @@
       "tagsLabel": "Tags",
       "hostingLabel": "Hosting",
       "hostingValue": "Cloudflare Pages"
+    },
+    "featuredSection": {
+      "eyebrow": "Featured",
+      "title": "Featured Posts",
+      "readMore": "Read more"
     },
     "categoriesSection": {
       "eyebrow": "Categories",

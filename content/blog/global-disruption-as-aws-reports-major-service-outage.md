@@ -1,6 +1,6 @@
 ---
 title: "Global Disruption as AWS Reports Major Service Outage"
-description: "In the early hours of October 20 2025, AWS confirmed a significant service disruption in its US-East-1 region (Northern Virginia) that has rippled across the globe. What began [&hellip;]"
+description: "In the early hours of October 20 2025, AWS confirmed a significant service disruption in its US-East-1 region (Northern Virginia) that has rippled across the globe. What began […]"
 pubDate: 2025-10-20
 category: "Announcements"
 tags: []

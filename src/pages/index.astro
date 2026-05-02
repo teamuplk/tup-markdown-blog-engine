@@ -1,17 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
-import { collectTaxonomyItems, getPublishedPosts } from '../lib/blog';
+import FeaturedCarousel from '../components/FeaturedCarousel.astro';
+import { collectTaxonomyItems, getPublishedPosts, getFeaturedPosts } from '../lib/blog';
 import { siteConfig } from '../data/site';
 
 const posts = await getPublishedPosts();
+const featuredPosts = siteConfig.featuredPosts ? await getFeaturedPosts(siteConfig.featuredPosts) : [];
 const latestPosts = posts.slice(0, 3);
 const categories = collectTaxonomyItems(posts, (post) => [post.data.category]).slice(0, 6);
 const tags = collectTaxonomyItems(posts, (post) => post.data.tags).slice(0, 6);
 ---
 
 <BaseLayout title={siteConfig.title} description={siteConfig.description}>
-  <section class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+  {featuredPosts.length > 0 && (
+    <section class="mb-12">
+      <FeaturedCarousel
+        posts={featuredPosts}
+        readMore={siteConfig.home.featuredSection.readMore}
+      />
+    </section>
+  )}
+
+  <!-- <section class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
     <div class="space-y-6">
       <p class="inline-flex rounded-full border border-[var(--brand-border)] bg-[var(--brand-soft)] px-4 py-2 text-sm font-semibold text-[var(--brand)]">
         {siteConfig.home.badge}
@@ -55,7 +66,7 @@ const tags = collectTaxonomyItems(posts, (post) => post.data.tags).slice(0, 6);
         <p class="mt-4 text-lg font-semibold leading-7">{siteConfig.home.stats.hostingValue}</p>
       </div>
     </div>
-  </section>
+  </section>-->
 
   <section class="mt-16 space-y-6">
     <div class="flex flex-wrap items-end justify-between gap-4">

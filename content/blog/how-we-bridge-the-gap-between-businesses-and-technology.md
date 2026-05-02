@@ -1,13 +1,13 @@
 ---
 title: "How we bridge the gap between businesses and technology"
-description: "With today&#8217;s fast moving economy the expectations of the businesses keeps increasing and IT’s ability to respond keeps decreasing. As the businesses are facing fast changes, technology influenced [&hellip;]"
+description: "With today's fast moving economy the expectations of the businesses keeps increasing and IT’s ability to respond keeps decreasing. As the businesses are facing fast changes, technology influenced […]"
 pubDate: 2022-01-20
 category: "Software Development"
 tags: []
 draft: false
 ---
 
-<p>With today&#8217;s fast moving economy the expectations of the businesses keeps increasing and IT’s ability to respond keeps decreasing. As the businesses are facing fast changes, technology influenced consumers and an increase in ease of access to cloud-based technologies it is necessary that with this combination of changes the IT functions in your business would also need to evolve.</p>
+<p>With today's fast moving economy the expectations of the businesses keeps increasing and IT’s ability to respond keeps decreasing. As the businesses are facing fast changes, technology influenced consumers and an increase in ease of access to cloud-based technologies it is necessary that with this combination of changes the IT functions in your business would also need to evolve.</p>
 
 
 
@@ -31,7 +31,7 @@ draft: false
 
 
 
-<p>Technology plays a big role for businesses, one main role being in how the data is accessed, processed and stored. It is important that businesses focus on the privacy of their data. Big companies&#8217; secrets could come out for one but the other con of not having data privacy would be that customers&#8217; information may get leaked. This could give the business negative publicity and would destroy customer confidence in your brand.</p>
+<p>Technology plays a big role for businesses, one main role being in how the data is accessed, processed and stored. It is important that businesses focus on the privacy of their data. Big companies' secrets could come out for one but the other con of not having data privacy would be that customers' information may get leaked. This could give the business negative publicity and would destroy customer confidence in your brand.</p>
 
 
 

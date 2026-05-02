@@ -37,6 +37,7 @@ export interface SiteConfig {
     heroTo: string;
   };
   nav: NavItem[];
+  featuredPosts?: string[];
   home: {
     badge: string;
     title: string;
@@ -49,6 +50,11 @@ export interface SiteConfig {
       tagsLabel: string;
       hostingLabel: string;
       hostingValue: string;
+    };
+    featuredSection: {
+      eyebrow: string;
+      title: string;
+      readMore: string;
     };
     categoriesSection: {
       eyebrow: string;
@@ -217,6 +223,7 @@ export const defaultSiteConfig: SiteConfig = {
     { href: '/blog/', label: 'Blog' },
     { href: '/categories/', label: 'Categories' },
   ],
+  featuredPosts: [],
   home: {
     badge: 'Markdown publishing starter',
     title: 'Publish your blog without coupling content to the app.',
@@ -230,6 +237,11 @@ export const defaultSiteConfig: SiteConfig = {
       tagsLabel: 'Tags',
       hostingLabel: 'Hosting',
       hostingValue: 'Cloudflare Pages',
+    },
+    featuredSection: {
+      eyebrow: 'Featured',
+      title: 'Featured Posts',
+      readMore: 'Read more',
     },
     categoriesSection: {
       eyebrow: 'Categories',
