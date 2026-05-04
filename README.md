@@ -2,7 +2,7 @@
 
 Astro-based markdown blog engine designed for an open-source workflow where the app can be updated independently from a user's posts, uploads, and site settings.
 
-This repository keeps TeamUp's local posts, uploads, and site configuration in the top-level `content/` directory so local development still renders the TeamUp site without mixing that data into the app layer.
+TeamUp's blog content lives in a separate folder (`tup-blog-content`) so that this engine stays reusable across different content sources.
 
 ## What this supports
 
@@ -20,11 +20,11 @@ npm install
 2. Copy `.env.example` to `.env` and point the content root at your content layer.
 
 ```bash
-SITE_URL=https://example.com
-BLOG_CONTENT_ROOT=content
+SITE_URL=https://blog.example.com
+BLOG_CONTENT_ROOT=../tup-blog-content
 ```
 
-If `BLOG_CONTENT_ROOT` is not set, the app automatically uses the repository's local `content/` directory when it exists.
+If `BLOG_CONTENT_ROOT` is not set, the app automatically falls back to `starter-content/` for demo purposes (or to a local `content/` directory if one exists).
 
 3. Start the site.
 
@@ -58,7 +58,7 @@ my-blog-content/
   site.config.json
 ```
 
-The same structure is used by this repository's own `content/` directory for local TeamUp development.
+The same structure is used by the separate `tup-blog-content/` directory for TeamUp's blog content.
 
 ## Update workflow
 
@@ -91,7 +91,7 @@ Each command prepares a generated public-assets directory first, then runs Astro
 
 Use it as a reference or as the basis for a separate starter content repository.
 
-The separate `content/` directory is the repository's real TeamUp content root.
+The separate `tup-blog-content/` directory is the TeamUp content root, kept outside this engine repository.
 
 ## More detail
 

@@ -8,7 +8,14 @@ function resolveDefaultContentRoot() {
   const localContentRoot = resolve(process.cwd(), 'content');
   const localBlogDir = resolve(localContentRoot, 'blog');
 
-  return existsSync(localBlogDir) ? localContentRoot : undefined;
+  if (existsSync(localBlogDir)) {
+    return localContentRoot;
+  }
+
+  const starterContentRoot = resolve(process.cwd(), 'starter-content');
+  const starterBlogDir = resolve(starterContentRoot, 'blog');
+
+  return existsSync(starterBlogDir) ? starterContentRoot : undefined;
 }
 
 function resolveBlogContentBase() {

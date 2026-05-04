@@ -1,17 +1,17 @@
 # Setup
 
-This project now supports two modes:
+This project supports two modes:
 
-1. Default mode: use the repository's local `content/` directory when it exists.
-2. External content mode: keep posts and site settings outside the app so you can update the upstream blog engine without mixing in your own content changes.
+1. External content mode (recommended): point `BLOG_CONTENT_ROOT` at a content directory outside the engine.
+2. Starter/default mode: when no content root is configured and no local `content/` directory exists, the engine falls back to `starter-content/` for demo purposes.
 
 ## External content mode
 
 Set these environment variables before running the app or build:
 
 ```bash
-SITE_URL=https://example.com
-BLOG_CONTENT_ROOT=content
+SITE_URL=https://blog.example.com
+BLOG_CONTENT_ROOT=../tup-blog-content
 ```
 
 `BLOG_CONTENT_ROOT`
@@ -19,7 +19,7 @@ BLOG_CONTENT_ROOT=content
 - Points to the single user-owned content root.
 - The app resolves `blog/`, `site.config.json`, and `public/` inside that root automatically.
 - This is the primary contract for downstream users.
-- If it is not set, the app automatically uses the repository's local `content/` directory when present.
+- If it is not set and no local `content/` directory exists, the app uses `starter-content/` as a minimal demo default.
 
 Expected structure:
 
@@ -66,7 +66,7 @@ The `starter-content/` directory is a working example of the external content co
 
 You can use it as a template for a separate content repository.
 
-The repository's own TeamUp site content now lives in the top-level `content/` directory using the same structure.
+The repository's own TeamUp site content now lives in the separate `tup-blog-content/` directory using the same structure.
 
 ## Recommended open-source workflow
 

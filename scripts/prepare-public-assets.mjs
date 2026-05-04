@@ -22,7 +22,14 @@ function resolveDefaultContentRoot() {
   const localContentRoot = resolve(rootDir, 'content');
   const localBlogDir = resolve(localContentRoot, 'blog');
 
-  return existsSync(localBlogDir) ? localContentRoot : undefined;
+  if (existsSync(localBlogDir)) {
+    return localContentRoot;
+  }
+
+  const starterContentRoot = resolve(rootDir, 'starter-content');
+  const starterBlogDir = resolve(starterContentRoot, 'blog');
+
+  return existsSync(starterBlogDir) ? starterContentRoot : undefined;
 }
 
 function resolveExternalPublicDir() {
