@@ -78,3 +78,107 @@ For downstream users:
 4. Pull upstream changes from the blog engine repository when new fixes are released.
 
 With that split, upstream updates stay focused on the app, while user-owned writing and branding stay outside the engine repo.
+## Deploying to Cloudflare Pages (git submodule workflow)
+
+For downstream content repositories that want to deploy their blog to Cloudflare Pages, this engine supports a git submodule workflow.
+
+### Recommended content repo structure
+
+```text
+your-blog-content/              ← Your Git repository (Cloudflare Pages project)
+├── engine/                     ← Git submodule → tup-markdown-blog-engine
+├── blog/                       ← Your markdown posts
+├── public/                     ← Your uploads and public assets
+│   └── content/uploads/...
+├── site.config.json            ← Your site configuration
+├── package.json                ← Delegates to engine scripts
+├── .env.example                ← Documents required environment variables
+└── .gitignore                  ← Ignores engine build artifacts
+```
+
+### Setting up the submodule
+
+```bash
+cd your-blog-content
+git submodule add <engine-repo-url> engine
+git submodule update --init --recursive
+```
+
+### Root package.json
+
+Create a minimal `package.json` that delegates to the engine:
+
+```jsonc
+{
+  "name": "your-blog-content",
+  "private": true,
+  "scripts": {
+    "postinstall": "cd engine && npm install",
+    "dev": "cd engine && npm run dev",
+    "build": "cd engine && npm run build",
+    "preview": "cd engine && npm run preview",
+    "check": "cd engine && npm run check"
+  }
+}
+```
+
+### Cloudflare Pages configuration
+
+In the Cloudflare Pages dashboard (or via `wrangler.toml`), configure:
+
+| Setting | Value |
+|---|---|
+| **Build command** | `cd engine && npm ci && npm run build` |
+| **Build output directory** | `engine/dist/` |
+| **Root directory** | *(leave blank — uses repo root)* |
+| **Enable submodules** | ✅ Checked (default for Cloudflare Pages) |
+
+Add these **environment variables** (Production + Preview):
+
+| Variable | Value |
+|---|---|
+| `BLOG_CONTENT_ROOT` | `../` |
+| `SITE_URL` | `https://your-blog-domain.com` |
+
+### How `BLOG_CONTENT_ROOT=../` works
+
+- Cloudflare runs the build command from the content repo root.
+- The build command changes into `engine/` (`cd engine`).
+- From inside `engine/`, `../` resolves back to your content repo root.
+- The engine then finds `blog/`, `site.config.json`, and `public/` there.
+
+### Updating the engine
+
+To pull the latest engine fixes into your content repo:
+
+```bash
+cd engine && git pull origin main
+# or equivalently:
+git submodule update --remote engine
+```
+
+Commit and push the updated submodule pointer:
+
+```bash
+git add engine
+git commit -m "chore: update blog engine to latest"
+git push
+```
+
+Cloudflare Pages will automatically rebuild and deploy.
+
+### Cloning an existing content repo (for local development)
+
+```bash
+git clone --recurse-submodules <your-content-repo-url>
+cd your-blog-content
+cp .env.example .env     # Edit SITE_URL and BLOG_CONTENT_ROOT
+npm install              # Installs root deps + triggers postinstall → cd engine && npm install
+npm run dev
+```
+
+If you already cloned without `--recurse-submodules`:
+
+```bash
+git submodule update --init --recursive
+```
