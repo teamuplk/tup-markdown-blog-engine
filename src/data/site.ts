@@ -197,7 +197,7 @@ function loadSiteOverride(): DeepPartial<SiteConfig> | undefined {
 }
 
 export const defaultSiteConfig: SiteConfig = {
-  title: 'Tup Markdown Blog',
+  title: 'Tup Markdown Blog Engine',
   description: 'A reusable markdown blog engine with categories, tags, search, and static deployment.',
   url: process.env.SITE_URL ?? 'https://example.com',
   brandMark: 'TB',

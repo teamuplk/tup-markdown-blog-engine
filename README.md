@@ -1,4 +1,4 @@
-# Tup Markdown Blog
+# Tup Markdown Blog Engine
 
 Astro-based markdown blog engine designed for an open-source workflow where the app can be updated independently from a user's posts, uploads, and site settings.
 
