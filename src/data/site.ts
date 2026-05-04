@@ -1,6 +1,19 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
+if (typeof process.loadEnvFile === 'function') {
+  const rootEnvPath = resolve(process.cwd(), '.env');
+  const localEnvPath = resolve(process.cwd(), '.env.local');
+
+  if (existsSync(rootEnvPath)) {
+    process.loadEnvFile(rootEnvPath);
+  }
+
+  if (existsSync(localEnvPath)) {
+    process.loadEnvFile(localEnvPath);
+  }
+}
+
 type NavItem = {
   href: string;
   label: string;
