@@ -1,0 +1,48 @@
+# Example Cloudflare Pages configuration for blogs using tup-markdown-blog-engine
+# Copy this file to wrangler.toml in your blog content directory and customize
+
+# Project name in Cloudflare Pages (must be unique across your account)
+name = "your-blog-name"
+compatibility_date = "2024-01-01"
+
+[build]
+# Command to build the site
+command = "cd engine && npm run build"
+# Directory containing the built files (Astro default is 'dist')
+directory = "engine/dist"
+
+[build.environment]
+# Node.js version for the build process
+NODE_VERSION = "20"
+
+# Environment-specific configurations
+[env.production]
+name = "your-blog-name-production"
+compatibility_date = "2024-01-01"
+
+[env.preview]
+name = "your-blog-name-preview"
+compatibility_date = "2024-01-01"
+
+# Placement configuration for edge computing
+[placement]
+mode = "smart"
+
+# Tracing configuration
+[tracing]
+enabled = true
+sampling_rate = 1.0
+
+# Example custom headers (uncomment and customize as needed)
+# [[headers]]
+# for = "/*"
+# [headers.values]
+#   X-Frame-Options = "DENY"
+#   X-Content-Type-Options = "nosniff"
+#   X-XSS-Protection = "1; mode=block"
+
+# Example redirects (uncomment and customize as needed)
+# [[redirects]]
+# from = "/old-page"
+# to = "/new-page"
+# status = 301
