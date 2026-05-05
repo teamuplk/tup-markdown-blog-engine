@@ -1,5 +1,9 @@
 # Setup
 
+> **Looking for a quick overview?** See the [README](./README.md) for a feature overview and quick start.
+>
+> **See what's new:** [CHANGELOG.md](./CHANGELOG.md)
+
 This project supports two modes:
 
 1. External content mode (recommended): point `BLOG_CONTENT_ROOT` at a content directory outside the engine.

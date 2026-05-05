@@ -2,7 +2,7 @@
   "name": "tup-markdown-blog-engine",
   "private": true,
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "prepare:assets": "node scripts/prepare-public-assets.mjs",
     "dev": "npm run prepare:assets && astro dev",
