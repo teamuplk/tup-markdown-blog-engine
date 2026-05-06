@@ -51,7 +51,7 @@ function decodeDesc(text: string): string {
               ]}></div>
               {hasHeroImage && <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_120%,rgba(255,255,255,0.1),transparent_50%)]"></div>}
               <div class="relative h-full p-6 md:p-10">
-                <div class="flex h-full flex-col justify-end">
+                <div class="flex h-full flex-col justify-end px-8">
                   <div class="mb-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-white/75">
                     <span class="rounded-full bg-white/20 px-3 py-1">{post.data.category}</span>
                     <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
