@@ -114,6 +114,15 @@ export interface SiteConfig {
     eyebrow: string;
     title: string;
   };
+  /**
+   * Optional HTML snippets injected into every page.
+   * Use `head` for scripts that belong in <head> (e.g. GA4, Plausible)
+   * and `body` for snippets that go before </body> (e.g. cookie banners).
+   */
+  tracking?: {
+    head?: string;
+    body?: string;
+  };
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -307,6 +316,10 @@ export const defaultSiteConfig: SiteConfig = {
   relatedPosts: {
     eyebrow: 'Related',
     title: 'More posts like this',
+  },
+  tracking: {
+    head: '',
+    body: '',
   },
 };
 

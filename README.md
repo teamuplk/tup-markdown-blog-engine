@@ -52,6 +52,7 @@ This separation means you can pull engine updates without having to touch your c
 | **RSS feed** | Auto-generated RSS feed at `/rss.xml` |
 | **Sitemap** | Auto-generated sitemap for SEO |
 | **Custom branding** | Override colors, navigation, and copy via `site.config.json` |
+| **Tracking support** | Inject any analytics or third-party snippet via `site.config.json` — works with GA4, Plausible, Fathom, Clarity, and more |
 | **Static output** | Builds to a flat static site — deploy to any static host |
 | **Cloudflare Pages** | Built-in git submodule workflow for easy deployment |
 | **Fast by default** | Astro's zero-JS-by-default philosophy keeps pages lean |
@@ -158,6 +159,24 @@ seoDescription: "Custom SEO description"           # optional
 ```
 
 > **Tip:** Use `featuredPosts` to pin specific posts to the homepage carousel. Set it to an array of post IDs (filenames without the `.md` extension).
+
+### Tracking & analytics
+
+You can inject any HTML snippet into every page via the `tracking` key. This works with Google Analytics, Plausible, Fathom, Cloudflare Web Analytics, Microsoft Clarity, and any other script-based service.
+
+```json
+{
+  "tracking": {
+    "head": "<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX\"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XXXXXXXXXX');</script>",
+    "body": ""
+  }
+}
+```
+
+- **`head`** — injected at the end of `<head>` (ideal for analytics scripts, tag managers).
+- **`body`** — injected before `</body>` (ideal for cookie banners, chat widgets).
+
+Both fields are optional — omit them entirely if you don't need tracking.
 
 ---
 

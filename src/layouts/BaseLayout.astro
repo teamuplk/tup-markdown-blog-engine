@@ -37,6 +37,7 @@ const brandStyles = `--brand: ${siteConfig.branding.primary}; --brand-soft: ${si
     <meta property="og:type" content={ogType} />
     <meta name="twitter:card" content="summary_large_image" />
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    {siteConfig.tracking?.head && <Fragment set:html={siteConfig.tracking.head} />}
   </head>
   <body class="min-h-screen font-sans text-slate-950 antialiased">
     <SiteHeader currentPath={Astro.url.pathname} />
@@ -44,5 +45,6 @@ const brandStyles = `--brand: ${siteConfig.branding.primary}; --brand-soft: ${si
       <slot />
     </main>
     <SiteFooter />
+    {siteConfig.tracking?.body && <Fragment set:html={siteConfig.tracking.body} />}
   </body>
 </html>
