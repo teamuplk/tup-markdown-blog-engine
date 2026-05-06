@@ -83,6 +83,7 @@ export interface SiteConfig {
       eyebrow: string;
       title: string;
       ctaLabel: string;
+      showTags?: string[];
     };
   };
   blogIndex: {
@@ -286,6 +287,7 @@ export const defaultSiteConfig: SiteConfig = {
       eyebrow: 'Tags',
       title: 'Browse by tag',
       ctaLabel: 'All tags',
+      showTags: [],
     },
   },
   blogIndex: {

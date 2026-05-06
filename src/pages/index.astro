@@ -9,7 +9,11 @@ const posts = await getPublishedPosts();
 const featuredPosts = siteConfig.featuredPosts ? await getFeaturedPosts(siteConfig.featuredPosts) : [];
 const latestPosts = posts.slice(0, 3);
 const categories = collectTaxonomyItems(posts, (post) => [post.data.category]).slice(0, 6);
-const tags = collectTaxonomyItems(posts, (post) => post.data.tags).slice(0, 6);
+const allTags = collectTaxonomyItems(posts, (post) => post.data.tags);
+const configuredTagSlugs = siteConfig.home.tagsSection.showTags;
+const tags = configuredTagSlugs && configuredTagSlugs.length > 0
+  ? allTags.filter((tag) => configuredTagSlugs.includes(tag.slug)).slice(0, 6)
+  : allTags.slice(0, 6);
 ---
 
 <BaseLayout title={siteConfig.title} description={siteConfig.description}>
