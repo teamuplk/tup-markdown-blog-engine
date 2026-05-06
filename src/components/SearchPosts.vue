@@ -34,7 +34,7 @@
         <div class="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--brand-muted)]">
           <a
             :href="`/categories/${slugify(post.category)}/`"
-            class="rounded-full bg-[var(--brand-soft)] px-3 py-1 text-[var(--brand)] transition group-hover:bg-[var(--brand-soft)]"
+            class="rounded-full bg-[var(--brand)] px-3 py-1 text-[var(--brand-foreground)] transition group-hover:bg-[var(--brand)]"
           >
             {{ post.category }}
           </a>
@@ -45,7 +45,12 @@
           <a :href="`/blog/${post.slug}/`">{{ post.title }}</a>
         </h3>
 
-        <p class="mt-3 text-sm leading-6 text-[var(--brand-muted)]">{{ post.description }}</p>
+        <p class="mt-3 text-sm leading-6 text-[var(--brand-muted)]">{{ cleanDescription(post.description) }}</p>
+
+        <a :href="`/blog/${post.slug}/`" class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[var(--brand)] transition hover:opacity-80">
+          Read more
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
 
         <div class="mt-5 flex flex-wrap gap-2">
           <a
@@ -188,6 +193,20 @@ watch(query, () => {
 const dateFormatter = new Intl.DateTimeFormat('en', {
   dateStyle: 'medium',
 });
+
+function cleanDescription(text: string): string {
+  return text
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(parseInt(code, 10)))
+    .replace(/&hellip;/g, '…')
+    .replace(/&mdash;/g, '—')
+    .replace(/&ndash;/g, '–')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/\s*\[…\]\s*$/, '');
+}
 
 function formatDate(value: string) {
   return dateFormatter.format(new Date(value));

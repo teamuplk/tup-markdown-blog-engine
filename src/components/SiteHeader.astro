@@ -30,7 +30,7 @@ const isImageUrl = (value: string) => /\.(png|svg|jpe?g)$/i.test(value);
       {siteConfig.nav.map((item) => (
         <a
           href={item.href}
-          class={`rounded-full px-4 py-2 transition hover:bg-[var(--brand-soft)] hover:text-[var(--brand-accent)] ${
+          class={`rounded-full px-4 py-2 transition hover:bg-[var(--brand-soft)] hover:text-[var(--brand)] ${
             isActive(item.href) ? 'bg-[var(--brand)] text-[var(--brand-foreground)] hover:bg-[var(--brand)] hover:text-[var(--brand-foreground)]' : ''
           }`}
         >

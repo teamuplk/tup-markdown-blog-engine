@@ -23,6 +23,20 @@ if (!post) {
 
 const { Content } = await render(post);
 const relatedPosts = getRelatedPosts(post, posts);
+
+function cleanDescription(text: string): string {
+  return text
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(parseInt(code, 10)))
+    .replace(/&hellip;/g, '…')
+    .replace(/&mdash;/g, '—')
+    .replace(/&ndash;/g, '–')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/\s*\[…\]\s*$/, '');
+}
 const canonical = post.data.canonicalUrl ?? new URL(`/blog/${post.id}/`, siteConfig.url).toString();
 const description = post.data.seoDescription ?? post.data.description;
 ---
@@ -41,18 +55,6 @@ const description = post.data.seoDescription ?? post.data.description;
     </div>
 
     <h1 class="mt-5 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">{post.data.title}</h1>
-    <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600">
-      {post.data.description.replace(/&#(\d+);/g, (_, code) => String.fromCharCode(parseInt(code, 10)))
-        .replace(/&hellip;/g, '…')
-        .replace(/&mdash;/g, '—')
-        .replace(/&ndash;/g, '–')
-        .replace(/&amp;/g, '&')
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>')
-        .replace(/&quot;/g, '"')
-        .replace(/&apos;/g, "'")}
-    </p>
-
     {post.data.tags.length > 0 && (
       <div class="mt-6 flex flex-wrap gap-2">
         {post.data.tags.map((tag) => (
@@ -84,7 +86,11 @@ const description = post.data.seoDescription ?? post.data.description;
             <a href={`/blog/${relatedPost.id}/`} class="text-xl font-semibold text-slate-950 transition hover:text-blue-700">
               {relatedPost.data.title}
             </a>
-            <p class="mt-3 text-sm leading-6 text-slate-600">{relatedPost.data.description}</p>
+            <p class="mt-3 text-sm leading-6 text-slate-600">{cleanDescription(relatedPost.data.description)}</p>
+            <a href={`/blog/${relatedPost.id}/`} class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-blue-700 transition hover:opacity-80">
+              Read more
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
           </article>
         ))}
       </div>
