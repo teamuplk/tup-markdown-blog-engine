@@ -275,7 +275,7 @@ export const defaultSiteConfig: SiteConfig = {
     },
     tagsSection: {
       eyebrow: 'Tags',
-      title: 'Browse by topic',
+      title: 'Browse by tag',
       ctaLabel: 'All tags',
     },
   },
@@ -299,9 +299,9 @@ export const defaultSiteConfig: SiteConfig = {
     metaDescription: 'Browse all tags in the archive.',
     eyebrow: 'Tags',
     title: 'Browse the content by tag',
-    description: 'Tags make it easy to follow topics across categories and spot related posts quickly.',
+    description: 'Tags make it easy to browse posts by tag and spot related content across categories.',
     detailEyebrow: 'Tag',
-    detailDescription: 'Posts linked by the same topic tag.',
+    detailDescription: 'Posts linked by the same tag.',
     emptyMessage: 'No posts were found for this tag.',
   },
   relatedPosts: {
