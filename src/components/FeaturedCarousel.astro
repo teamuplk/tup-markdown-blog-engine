@@ -47,8 +47,8 @@ function decodeDesc(text: string): string {
             {...hasHeroImage ? { style: `background-image: url('${heroImageUrl}')` } : {}}>
               <div class:list={[
                 'absolute inset-0',
-                hasHeroImage ? 'bg-gradient-to-br from-black/70 to-black/50' : 'bg-gradient-to-br from-blue-600 to-blue-400'
-              ]}></div>
+                hasHeroImage && 'bg-gradient-to-br from-black/70 to-black/50'
+              ]} style={!hasHeroImage ? { background: 'linear-gradient(to bottom right, var(--brand-hero-from), var(--brand-hero-to))' } : undefined}></div>
               {hasHeroImage && <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_120%,rgba(255,255,255,0.1),transparent_50%)]"></div>}
               <div class="relative h-full p-6 md:p-10">
                 <div class="flex h-full flex-col justify-end px-8">
