@@ -48,6 +48,8 @@ export interface SiteConfig {
     selection: string;
     heroFrom: string;
     heroTo: string;
+    codeText: string;
+    tableHeaderText: string;
   };
   nav: NavItem[];
   featuredPosts?: string[];
@@ -247,6 +249,8 @@ export const defaultSiteConfig: SiteConfig = {
     selection: '#00ef90',
     heroFrom: '#08d23e',
     heroTo: '#00ef90',
+    codeText: '#ffffff',
+    tableHeaderText: '#ffffff',
   },
   nav: [
     { href: '/', label: 'Home' },
