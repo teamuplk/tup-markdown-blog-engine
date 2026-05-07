@@ -13,7 +13,7 @@ const isImageUrl = (value: string) => /\.(png|svg|jpe?g)$/i.test(value);
     <a href="/" class="flex items-center gap-3">
       {siteConfig.brandMark && (
         isImageUrl(siteConfig.brandMark) ? (
-          <img src={siteConfig.brandMark} alt={siteConfig.title} class="h-11 w-auto object-contain" />
+          <img src={siteConfig.brandMark} alt={siteConfig.title} class="h-11 w-auto object-contain max-h-8" />
         ) : (
           <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--brand)] text-sm font-semibold text-[var(--brand-foreground)] shadow-lg shadow-slate-950/15">
             {siteConfig.brandMark}

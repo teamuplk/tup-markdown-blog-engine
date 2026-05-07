@@ -299,7 +299,7 @@ export const defaultSiteConfig: SiteConfig = {
   categoriesPage: {
     metaDescription: 'Browse all categories in the archive.',
     eyebrow: 'Categories',
-    title: 'Browse the content by category',
+    title: 'Browse content by category',
     description: 'Categories make the archive easy to scan and keep related posts grouped together.',
     cardLabel: 'Category',
     detailEyebrow: 'Category',
@@ -309,7 +309,7 @@ export const defaultSiteConfig: SiteConfig = {
   tagsPage: {
     metaDescription: 'Browse all tags in the archive.',
     eyebrow: 'Tags',
-    title: 'Browse the content by tag',
+    title: 'Browse content by tag',
     description: 'Tags make it easy to browse posts by tag and spot related content across categories.',
     detailEyebrow: 'Tag',
     detailDescription: 'Posts linked by the same tag.',
