@@ -254,7 +254,7 @@ export const defaultSiteConfig: SiteConfig = {
   },
   nav: [
     { href: '/', label: 'Home' },
-    { href: '/blog/', label: 'Blog' },
+    { href: '/posts/', label: 'Blog' },
     { href: '/categories/', label: 'Categories' },
   ],
   featuredPosts: [],
@@ -263,7 +263,7 @@ export const defaultSiteConfig: SiteConfig = {
     title: 'Publish your blog without coupling content to the app.',
     description:
       'Use a single content root for posts, uploads, and site settings while keeping the Astro engine easy to update.',
-    primaryCta: { href: '/blog/', label: 'Browse posts' },
+    primaryCta: { href: '/posts/', label: 'Browse posts' },
     secondaryCta: { href: '/categories/', label: 'View categories' },
     stats: {
       postsLabel: 'Published posts',

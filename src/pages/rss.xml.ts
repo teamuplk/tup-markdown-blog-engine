@@ -13,7 +13,7 @@ export async function GET() {
       title: post.data.title,
       description: post.data.seoDescription ?? post.data.description,
       pubDate: post.data.pubDate,
-      link: `/blog/${getPostSlug(post)}/`,
+      link: `/post/${getPostSlug(post)}/`,
     })),
   });
 }

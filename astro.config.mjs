@@ -118,7 +118,12 @@ export default defineConfig({
   site: resolveSiteUrl(),
   publicDir: generatedPublicDir,
   trailingSlash: 'always',
-  integrations: [vue(), sitemap()],
+  integrations: [
+    vue(),
+    sitemap({
+      filter: (page) => !new URL(page).pathname.startsWith('/blog/'),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

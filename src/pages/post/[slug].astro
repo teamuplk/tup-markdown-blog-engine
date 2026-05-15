@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { render } from 'astro:content';
+import { getPublishedPosts, getRelatedPosts } from '../../lib/blog';
+import { slugify } from '../../lib/slug';
+import { siteConfig } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+  }));
+}
+
+const posts = await getPublishedPosts();
+const slug = Astro.params.slug ?? '';
+const post = posts.find((entry) => entry.id === slug);
+
+if (!post) {
+  throw new Error(`Post not found for slug: ${slug}`);
+}
+
+const { Content } = await render(post);
+const relatedPosts = getRelatedPosts(post, posts);
+
+function cleanDescription(text: string): string {
+  return text
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(parseInt(code, 10)))
+    .replace(/&hellip;/g, '…')
+    .replace(/&mdash;/g, '—')
+    .replace(/&ndash;/g, '–')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/\s*\[…\]\s*$/, '');
+}
+const canonical = post.data.canonicalUrl ?? new URL(`/post/${post.id}/`, siteConfig.url).toString();
+const description = post.data.seoDescription ?? post.data.description;
+---
+
+<BaseLayout title={`${post.data.title} | ${siteConfig.title}`} description={description} canonical={canonical} ogType="article">
+  <article class="rounded-3xl border border-[var(--brand-border)]/80 bg-[var(--brand-surface)]/90 p-6 shadow-sm sm:p-8 lg:p-10">
+    <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--brand-muted)]">
+      <a
+        href={`/categories/${slugify(post.data.category)}/`}
+        class="rounded-full bg-[var(--brand)] px-3 py-1 text-[var(--brand-foreground)] transition group-hover:bg-[var(--brand)]"
+      >
+        {post.data.category}
+      </a>
+      <time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toDateString()}</time>
+      {post.data.updatedDate && <span>Updated {post.data.updatedDate.toDateString()}</span>}
+    </div>
+
+    <h1 class="mt-5 text-4xl font-semibold tracking-tight text-[var(--brand-accent)] sm:text-5xl">{post.data.title}</h1>
+    {post.data.tags.length > 0 && (
+      <div class="mt-6 flex flex-wrap gap-2">
+        {post.data.tags.map((tag) => (
+          <a
+            href={`/tags/${slugify(tag)}/`}
+            class="rounded-full border border-[var(--brand-border)] px-3 py-1 text-sm font-medium text-[var(--brand-muted)] transition hover:border-[var(--brand-soft)] hover:bg-[var(--brand-soft)] hover:text-[var(--brand)]"
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+    )}
+
+    <div class="mt-10 space-y-6 text-lg leading-8 text-[var(--brand-muted)] [&_a]:font-semibold [&_a]:text-[var(--brand)] [&_a:hover]:underline [&_h2]:mt-10 [&_h2]:text-3xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-[var(--brand-accent)] [&_h3]:mt-8 [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:tracking-tight [&_h3]:text-[var(--brand-accent)] [&_p]:text-[var(--brand-muted)] [&_ul]:space-y-2 [&_ul]:pl-6 [&_ul]:text-[var(--brand-muted)] [&_ul]:list-disc [&_ol]:space-y-2 [&_ol]:pl-6 [&_ol]:text-[var(--brand-muted)] [&_ol]:list-decimal [&_blockquote]:border-l-4 [&_blockquote]:border-[var(--brand-soft)] [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-[var(--brand-muted)] [&_code]:rounded [&_code]:bg-[var(--brand-soft)] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_code]:text-[var(--brand-code-text)] [&_pre]:overflow-x-auto [&_pre]:rounded-2xl [&_pre]:bg-[var(--brand-accent)] [&_pre]:p-5 [&_pre]:text-sm [&_pre]:text-[var(--brand-foreground)] [&_table]:w-full [&_table]:border-collapse [&_table]:border [&_table]:border-[var(--brand-border)] [&_th]:border [&_th]:border-[var(--brand-border)] [&_th]:bg-[var(--brand-soft)] [&_th]:px-4 [&_th]:py-2 [&_th]:text-left [&_th]:font-semibold [&_th]:text-[var(--brand-table-header-text)] [&_td]:border [&_td]:border-[var(--brand-border)] [&_td]:px-4 [&_td]:py-2 [&_td]:text-[var(--brand-muted)]">
+      <Content />
+    </div>
+  </article>
+
+  {relatedPosts.length > 0 && (
+    <section class="mt-16 space-y-6">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--brand)]">Related</p>
+        <h2 class="mt-2 text-3xl font-semibold tracking-tight text-[var(--brand-accent)]">More posts like this</h2>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {relatedPosts.map((relatedPost) => (
+          <article class="rounded-3xl border border-[var(--brand-border)]/80 bg-[var(--brand-surface)] p-6 shadow-sm">
+            <a href={`/post/${relatedPost.id}/`} class="text-xl font-semibold text-[var(--brand-foreground-color)] transition hover:text-[var(--brand)]">
+              {relatedPost.data.title}
+            </a>
+            <p class="mt-3 text-sm leading-6 text-[var(--brand-muted)]">{cleanDescription(relatedPost.data.description)}</p>
+            <a href={`/post/${relatedPost.id}/`} class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[var(--brand)] transition hover:opacity-80">
+              Read more
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>

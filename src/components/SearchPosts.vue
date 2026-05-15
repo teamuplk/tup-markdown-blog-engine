@@ -42,12 +42,12 @@
         </div>
 
         <h3 class="mt-4 text-2xl font-semibold leading-tight text-[var(--brand-foreground-color)] transition group-hover:text-[var(--brand)]">
-          <a :href="`/blog/${post.slug}/`">{{ post.title }}</a>
+          <a :href="`/post/${post.slug}/`">{{ post.title }}</a>
         </h3>
 
         <p class="mt-3 text-sm leading-6 text-[var(--brand-muted)]">{{ cleanDescription(post.description) }}</p>
 
-        <a :href="`/blog/${post.slug}/`" class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[var(--brand)] transition hover:opacity-80">
+        <a :href="`/post/${post.slug}/`" class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[var(--brand)] transition hover:opacity-80">
           Read more
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
